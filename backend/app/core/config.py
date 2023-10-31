@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional, Union
 from sqlalchemy import URL
-from pydantic import AnyHttpUrl, validator, Field
+from pydantic import AnyHttpUrl, validator, Field, EmailStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -59,13 +59,13 @@ class Settings(BaseSettings):
             database=f"{values.get('MYSQL_DB') or ''}",
         )
 
-    # SMTP_TLS: bool = True
-    # SMTP_PORT: Optional[int] = None
-    # SMTP_HOST: Optional[str] = None
-    # SMTP_USER: Optional[str] = None
-    # SMTP_PASSWORD: Optional[str] = None
-    # EMAILS_FROM_EMAIL: Optional[EmailStr] = None
-    # EMAILS_FROM_NAME: Optional[str] = None
+    SMTP_TLS: bool = False
+    SMTP_PORT: Optional[int] = 25
+    SMTP_HOST: Optional[str] = 'localhost'
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    EMAILS_FROM_EMAIL: Optional[EmailStr] = "ggaeuk@naver.com"
+    EMAILS_FROM_NAME: Optional[str] = "jrpark"
     #
     # @validator("EMAILS_FROM_NAME")
     # def get_project_name(cls, v: Optional[str], values: Dict[str, Any]) -> str:
@@ -74,8 +74,8 @@ class Settings(BaseSettings):
     #     return v
     #
     # EMAIL_RESET_TOKEN_EXPIRE_HOURS: int = 48
-    # EMAIL_TEMPLATES_DIR: str = "/app/app/email-templates/build"
-    # EMAILS_ENABLED: bool = False
+    EMAIL_TEMPLATES_DIR: str = "app/email-templates/build"
+    EMAILS_ENABLED: bool = True
     #
     # @validator("EMAILS_ENABLED", pre=True)
     # def get_emails_enabled(cls, v: bool, values: Dict[str, Any]) -> bool:

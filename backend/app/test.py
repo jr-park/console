@@ -26,9 +26,13 @@
 # ssh.close()
 
 
-import emails
+# import emails
+#
+# message = emails.html(html="<p>Hi!<br>Here is your receipt...",
+#                           subject="Your receipt No. 567098123",
+#                           mail_from=('Some Store', 'store@somestore.com'))
+# r = message.send(to='ggaeuk@naver.com', smtp={'host': 'localhost', 'timeout': 5})
 
-message = emails.html(html="<p>Hi!<br>Here is your receipt...",
-                          subject="Your receipt No. 567098123",
-                          mail_from=('Some Store', 'store@somestore.com'))
-r = message.send(to='ggaeuk@naver.com', smtp={'host': 'localhost', 'timeout': 5})
+import utils
+
+utils.send_test_email(email_to='ggaeuk@naver.com')
